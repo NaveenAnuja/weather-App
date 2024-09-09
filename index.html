@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Weather</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='style/style.css'>
+</head>
+
+<body>
+    <div class="app-header">
+        <h1>Weather Update</h1>
+        <span>Enter a location for weather information</span>
+
+        <form>
+            <input type="text" name="userLocation" id="userLocation" autocomplete="off">
+        </form>
+    </div>
+
+    <video id="background" autoplay muted loop>
+        <source id="backgroundsource" src="/videos/dayTime.mp4" type="video/mp4">
+    </video>
+
+    <div class="app-body">
+        <div class="time-image">
+            <img src="https://via.placeholder.com/300x260" alt="day or nigth" id="timeImage">
+        </div>
+
+        <div class="weather-icon">
+            <img src="https://via.placeholder.com/100" alt="day or nigth" id="timeIcon">
+        </div>
+
+        <div class="weather-info">
+            <p id="city">Bentota</p>
+            <p id="status">Cloudy</p>
+
+            <p id="temp">25.2 &#8451;</p>
+            <p id="wind">19.4 &#127786;</p>
+            <p id="humidity">86 &#128167;</span></p>
+        </div>
+    </div>
+
+    <div class="forecast-title">
+        <p id="name">7-Day forecast</p>
+    </div>
+
+    <div class="current-date-time">
+        <p id="time">11.28</p>
+        <p id="date">08 january 2024</p>
+    </div>
+
+    <div class="forcast-items-container">
+
+        <div class="forcast-item">
+            <h5 class="forcast-item-date">Jan 18</h5>
+            <img src="images/forcast-image.png" class="forcast-item-image">
+            <h5 class="forcast-item-temp">28 &#8451;</h5>
+        </div>
+
+        <div class="forcast-item">
+            <h5 class="forcast-item-date">Jan 18</h5>
+            <img src="images/forcast-image.png" class="forcast-item-image">
+            <h5 class="forcast-item-temp">28 &#8451;</h5>
+        </div>
+
+        <div class="forcast-item">
+            <h5 class="forcast-item-date">Jan 18</h5>
+            <img src="images/forcast-image.png" class="forcast-item-image">
+            <h5 class="forcast-item-temp">28 &#8451;</h5>
+        </div>
+
+        <div class="forcast-item">
+            <h5 class="forcast-item-date">Jan 18</h5>
+            <img src="images/forcast-image.png" class="forcast-item-image">
+            <h5 class="forcast-item-temp">28 &#8451;</h5>
+        </div>
+
+        <div class="forcast-item">
+            <h5 class="forcast-item-date">Jan 18</h5>
+            <img src="images/forcast-image.png" class="forcast-item-image">
+            <h5 class="forcast-item-temp">28 &#8451;</h5>
+        </div>
+
+        <div class="forcast-item">
+            <h5 class="forcast-item-date">Jan 18</h5>
+            <img src="images/forcast-image.png" class="forcast-item-image">
+            <h5 class="forcast-item-temp">28 &#8451;</h5>
+        </div>
+
+        <div class="forcast-item">
+            <h5 class="forcast-item-date">Jan 18</h5>
+            <img src="images/forcast-image.png" class="forcast-item-image">
+            <h5 class="forcast-item-temp">28.2 &#8451;</h5>
+        </div>
+    </div>
+
+
+
+    <div class="forecast-24-hours-container1">
+
+        <div class="forecast-24-items">
+            <h5 class="forecast-item-time">22.15</h5>
+            <img src="/images/forcast-image.png" class="forecast-24-image">
+            <h5 class="forecast-status">sunny</h5>
+            <h5 class="forecast-24-temp">26.3 &#8451;</h5>
+        </div>
+
+        <div class="forecast-24-items">
+            <h5 class="forecast-item-time">22.15</h5>
+            <img src="/images/forcast-image.png" class="forecast-24-image">
+            <h5 class="forecast-status">sunny</h5>
+            <h5 class="forecast-24-temp">26.3 &#8451;</h5>
+        </div>
+
+        <div class="forecast-24-items">
+            <h5 class="forecast-item-time">22.15</h5>
+            <img src="/images/forcast-image.png" class="forecast-24-image">
+            <h5 class="forecast-status">sunny</h5>
+            <h5 class="forecast-24-temp">26.3 &#8451;</h5>
+        </div>
+
+        <div class="forecast-24-items">
+            <h5 class="forecast-item-time">22.15</h5>
+            <img src="/images/forcast-image.png" class="forecast-24-image">
+            <h5 class="forecast-status">sunny</h5>
+            <h5 class="forecast-24-temp">26.3 &#8451;</h5>
+        </div>
+
+        <div class="forecast-24-items">
+            <h5 class="forecast-item-time">22.15</h5>
+            <img src="/images/forcast-image.png" class="forecast-24-image">
+            <h5 class="forecast-status">sunny</h5>
+            <h5 class="forecast-24-temp">26.3 &#8451;</h5>
+        </div>
+
+        <div class="forecast-24-items">
+            <h5 class="forecast-item-time">22.15</h5>
+            <img src="/images/forcast-image.png" class="forecast-24-image">
+            <h5 class="forecast-status">sunny</h5>
+            <h5 class="forecast-24-temp">26.3 &#8451;</h5>
+        </div>
+
+        <div class="forecast-24-items">
+            <h5 class="forecast-item-time">22.15</h5>
+            <img src="/images/forcast-image.png" class="forecast-24-image">
+            <h5 class="forecast-status">sunny</h5>
+            <h5 class="forecast-24-temp">26.3 &#8451;</h5>
+        </div>
+
+        <div class="forecast-24-items">
+            <h5 class="forecast-item-time">22.15</h5>
+            <img src="/images/forcast-image.png" class="forecast-24-image">
+            <h5 class="forecast-status">sunny</h5>
+            <h5 class="forecast-24-temp">26.3 &#8451;</h5>
+        </div>
+
+        <div class="forecast-24-items">
+            <h5 class="forecast-item-time">22.15</h5>
+            <img src="/images/forcast-image.png" class="forecast-24-image">
+            <h5 class="forecast-status">sunny</h5>
+            <h5 class="forecast-24-temp">26.3 &#8451;</h5>
+        </div>
+
+        <div class="forecast-24-items">
+            <h5 class="forecast-item-time">22.15</h5>
+            <img src="/images/forcast-image.png" class="forecast-24-image">
+            <h5 class="forecast-status">sunny</h5>
+            <h5 class="forecast-24-temp">26.3 &#8451;</h5>
+        </div>
+
+        <div class="forecast-24-items">
+            <h5 class="forecast-item-time">22.15</h5>
+            <img src="/images/forcast-image.png" class="forecast-24-image">
+            <h5 class="forecast-status">sunny</h5>
+            <h5 class="forecast-24-temp">26.3 &#8451;</h5>
+        </div>
+
+        <div class="forecast-24-items">
+            <h5 class="forecast-item-time">22.15</h5>
+            <img src="/images/forcast-image.png" class="forecast-24-image">
+            <h5 class="forecast-status">sunny</h5>
+            <h5 class="forecast-24-temp">26.3 &#8451;</h5>
+        </div>
+
+    </div>
+
+
+    <div class="forecast-24-hours-container2">
+
+        <div class="forecast-24-items">
+            <h5 class="forecast-item-time">22.15</h5>
+            <img src="/images/forcast-image.png" class="forecast-24-image">
+            <h5 class="forecast-status">sunny</h5>
+            <h5 class="forecast-24-temp">26.3 &#8451;</h5>
+        </div>
+
+        <div class="forecast-24-items">
+            <h5 class="forecast-item-time">22.15</h5>
+            <img src="/images/forcast-image.png" class="forecast-24-image">
+            <h5 class="forecast-status">sunny</h5>
+            <h5 class="forecast-24-temp">26.3 &#8451;</h5>
+        </div>
+
+        <div class="forecast-24-items">
+            <h5 class="forecast-item-time">22.15</h5>
+            <img src="/images/forcast-image.png" class="forecast-24-image">
+            <h5 class="forecast-status">sunny</h5>
+            <h5 class="forecast-24-temp">26.3 &#8451;</h5>
+        </div>
+
+        <div class="forecast-24-items">
+            <h5 class="forecast-item-time">22.15</h5>
+            <img src="/images/forcast-image.png" class="forecast-24-image">
+            <h5 class="forecast-status">sunny</h5>
+            <h5 class="forecast-24-temp">26.3 &#8451;</h5>
+        </div>
+
+        <div class="forecast-24-items">
+            <h5 class="forecast-item-time">22.15</h5>
+            <img src="/images/forcast-image.png" class="forecast-24-image">
+            <h5 class="forecast-status">sunny</h5>
+            <h5 class="forecast-24-temp">26.3 &#8451;</h5>
+        </div>
+
+        <div class="forecast-24-items">
+            <h5 class="forecast-item-time">22.15</h5>
+            <img src="/images/forcast-image.png" class="forecast-24-image">
+            <h5 class="forecast-status">sunny</h5>
+            <h5 class="forecast-24-temp">26.3 &#8451;</h5>
+        </div>
+
+        <div class="forecast-24-items">
+            <h5 class="forecast-item-time">22.15</h5>
+            <img src="/images/forcast-image.png" class="forecast-24-image">
+            <h5 class="forecast-status">sunny</h5>
+            <h5 class="forecast-24-temp">26.3 &#8451;</h5>
+        </div>
+
+        <div class="forecast-24-items">
+            <h5 class="forecast-item-time">22.15</h5>
+            <img src="/images/forcast-image.png" class="forecast-24-image">
+            <h5 class="forecast-status">sunny</h5>
+            <h5 class="forecast-24-temp">26.3 &#8451;</h5>
+        </div>
+
+        <div class="forecast-24-items">
+            <h5 class="forecast-item-time">22.15</h5>
+            <img src="/images/forcast-image.png" class="forecast-24-image">
+            <h5 class="forecast-status">sunny</h5>
+            <h5 class="forecast-24-temp">26.3 &#8451;</h5>
+        </div>
+
+        <div class="forecast-24-items">
+            <h5 class="forecast-item-time">22.15</h5>
+            <img src="/images/forcast-image.png" class="forecast-24-image">
+            <h5 class="forecast-status">sunny</h5>
+            <h5 class="forecast-24-temp">26.3 &#8451;</h5>
+        </div>
+
+        <div class="forecast-24-items">
+            <h5 class="forecast-item-time">22.15</h5>
+            <img src="/images/forcast-image.png" class="forecast-24-image">
+            <h5 class="forecast-status">sunny</h5>
+            <h5 class="forecast-24-temp">26.3 &#8451;</h5>
+        </div>
+
+        <div class="forecast-24-items">
+            <h5 class="forecast-item-time">22.15</h5>
+            <img src="/images/forcast-image.png" class="forecast-24-image">
+            <h5 class="forecast-status">sunny</h5>
+            <h5 class="forecast-24-temp">26.3 &#8451;</h5>
+        </div>
+    </div>
+
+
+    <script src="/script/forcast.js"></script>
+    <script src="/script/app.js"></script>
+</body>
+
+</html>

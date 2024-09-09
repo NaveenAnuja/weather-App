@@ -1,0 +1,294 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+}
+
+body {
+    background-color: #FFDEE9;
+    background-image: linear-gradient(0deg, #FFDEE9 0%, #B5FFFC 100%);
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    font-family: "Poppins", sans-serif;
+    min-height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.app-header {
+    padding: 12px;
+    margin-bottom: 25px;
+}
+
+.app-header h1 {
+    letter-spacing: 1.2px;
+}
+
+.app-header span {
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+
+.app-header input {
+    padding: 4px;
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+}
+
+.app-header input[type=text]:focus {
+    outline-color: rgb(137, 203, 220);
+    outline-style: solid;
+    outline-width: 0.1rem;
+}
+
+.app-body {
+    display: none;
+    background-color: rgb(105, 140, 146);
+    width: 320px;
+    height: 450px;
+    border-radius: 5px;
+    box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.time-image {
+    background-color: rgb(65, 61, 61);
+    height: 260px;
+    overflow: hidden;
+}
+
+.time-image #timeImage {
+    justify-content: center;
+    height: 150%;
+    max-width: 150%;
+}
+
+.weather-icon {
+    background-color: #8ec5db;
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    outline-style: solid;
+    outline-color: rgb(19, 186, 224);
+    border-radius: 50%;
+    left: 0;
+    right: 0;
+    bottom: 160px;
+    margin: auto;
+    overflow: hidden;
+}
+
+.weather-icon #timeIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+    height: 100%;
+}
+
+.weather-info {
+    margin-top: 40px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.weather-info p {
+    letter-spacing: 1px;
+}
+
+.weather-info #city {
+    letter-spacing: 1px;
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin: auto;
+}
+
+.weather-info #status {
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.weather-info #temp {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 1.05rem;
+}
+
+.weather-info #wind {
+    text-align: center;
+    font-size: 1.05rem;
+}
+
+.weather-info #humidity {
+    overflow: hidden;
+    text-align: center;
+    font-size: 1.05rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.temperature-label {
+    text-align: center;
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin-right: 20px;
+}
+
+.wind-label {
+    text-align: center;
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin-right: 26px;
+}
+
+.humidity-label {
+    text-align: center;
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin-right: 38px;
+}
+.forecast-title{
+    display: none;
+}
+#name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-align: left;
+    position: relative;
+    margin: 0px 0;
+    margin-left: 200px;
+    left: -570px;
+    bottom: 530px;
+    overflow: hidden;
+}
+
+.current-date-time{
+    display: none;
+}
+#time {
+    justify-content: center;
+    font-size: 6rem;
+    overflow: hidden;
+}
+
+#date{
+    align-items: center;
+    overflow: hidden;
+    font-size: 1.35rem;
+}
+.forcast-items-container {
+    display: none;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 100px;
+    border: solid;
+    gap: 1px;
+    position: absolute;
+    top: 5px;
+    left: 140px;
+}
+
+.forcast-item {
+    display: none;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    margin-left: 20px;
+    margin-right: 20px;
+    min-width: 70px;
+    background: rgba(194, 105, 105, 0.1);
+    gap: 6px;
+    border-radius: 12px;
+    align-items: center;
+    padding: 10px;
+    transition: 0.3s background-color;
+}
+
+.forcast-item:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.forcast-item-image {
+    width: 35px;
+    height: 35px;
+}
+
+
+.forecast-24-hours-container1 {
+    display: flex;
+    margin-top: 20px;
+    margin-left: 250px;
+    margin-right: 250px;
+    gap: 15px;
+    padding: 5px;
+}
+
+.forecast-24-image {
+    width: 35px;
+    height: 35px;
+}
+
+.forecast-24-hours-container2 {
+    display: flex;
+    gap: 15px;
+    padding: 5px;
+    margin-left: 250px;
+    margin-right: 250px;
+    margin-bottom: 20px;
+}
+
+.forecast-24-items {
+    display: none;
+    margin-top: 20px;
+    min-width: 90px;
+    background: rgba(194, 105, 105, 0.12);
+    gap: 6px;
+    border-radius: 12px;
+    align-items: center;
+    padding: 10px;
+    transition: 0.3s background-color;
+}
+
+.forecast-24-items:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.forecast-24-items .forecast-status {
+    font-size: 0.7rem;
+    text-align: center;
+    overflow: hidden;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.forecast-24-items .forecast-24-temp {
+    font-size: 1rem;
+    text-align: center;
+    font-weight: 650;
+    line-height: 1.2;
+    padding: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#background {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin-bottom: 100px;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -1;
+    object-fit: cover;
+}

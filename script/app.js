@@ -30,9 +30,9 @@ const formatDate2 = (dateStr) => {
 const getInfo = async (city) => {
     const cityData = await getCityDetails(city);
     const weatherData = await getWeatherNext7days(city);
-    const currentDateTime = await getCurentDateTime(city);
+    const currentDateTime = await getCurrentDateTime(city);
 
-    return { cityData, weatherData, currentDateTime }
+    return { cityData, weatherData, currentDateTime };
 };
 
 const updateUi = (data) => {
@@ -51,6 +51,7 @@ const updateUi = (data) => {
         timeImage.setAttribute('src', 'images/dayTime.png');
         backgroundsource.setAttribute('src', 'videos/dayTime.mp4');
         background.load();
+        background.play();
     }
 
     const iconUrl = cityData.current.condition.icon;
@@ -72,21 +73,24 @@ const updateUi = (data) => {
 
     forecastItemsContainer.innerHTML = '';
 
-    for (let i = 0; i < 7; i++) {
-        const forecastdate = weatherData.forecast.forecastday[i].date;
-        const formatdate = formatDate1(forecastdate);
-        const forecastimage = weatherData.forecast.forecastday[i].day.condition.icon;
-        const forecasttemp = weatherData.forecast.forecastday[i].day.mintemp_c;
+   
 
-        const forecastItem = document.createElement('div');
-        forecastItem.classList.add('forcast-item');
+ for (let i = 0; i < 3; i++) { 
+     const forecastdate = weatherData.forecast.forecastday[i].date;
+     const formatdate = formatDate1(forecastdate);
+     const forecastimage = weatherData.forecast.forecastday[i].day.condition.icon;
+     const forecasttemp = weatherData.forecast.forecastday[i].day.mintemp_c;
 
-        forecastItem.innerHTML = `<h5 class="forcast-item-date">${formatdate}</h5>
-                                  <img src="https:${forecastimage}" class="forcast-item-image">
-                                  <h5 class="forcast-item-temp">${forecasttemp} &#8451;</h5>`;
+     const forecastItem = document.createElement('div');
+     forecastItem.classList.add('forcast-item');
 
-        forecastItemsContainer.appendChild(forecastItem);
-    }
+     forecastItem.innerHTML = `<h5 class="forcast-item-date">${formatdate}</h5>
+                               <img src="https:${forecastimage}" class="forcast-item-image">
+                               <h5 class="forcast-item-temp">${forecasttemp} &#8451;</h5>`;
+
+     forecastItemsContainer.appendChild(forecastItem);
+ }
+
 
     const date = weatherData.forecast.forecastday[0].date;
     const updateDate = formatDate2(date);
@@ -169,5 +173,3 @@ form.addEventListener('submit', e => {
         })
         .catch(err => console.log(err));
 });
-
-

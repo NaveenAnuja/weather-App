@@ -74,23 +74,29 @@ const updateUi = (data) => {
 
      forecastItemsContainer.innerHTML = '';
 
+   
 
+ for (let i = 0; i < 3; i++) { 
+     const forecastdate = weatherData.forecast.forecastday[i].date;
+     const formatdate = formatDate1(forecastdate);
+     const forecastimage = weatherData.forecast.forecastday[i].day.condition.icon;
+     const forecasttemp = weatherData.forecast.forecastday[i].day.mintemp_c;
 
-    for (let i = 0; i < 3; i++) {
-        const forecastdate = weatherData.forecast.forecastday[i].date;
-        const formatdate = formatDate1(forecastdate);
-        const forecastimage = weatherData.forecast.forecastday[i].day.condition.icon;
-        const forecasttemp = weatherData.forecast.forecastday[i].day.mintemp_c;
-
-        const forecastItem = document.createElement('div');
-        forecastItem.classList.add('forcast-item');
 
         forecastItem.innerHTML = `<h5 class="forcast-item-date">${formatdate}</h5>
                                <img src="https:${forecastimage}" class="forcast-item-image">
                                <h5 class="forcast-item-temp">${forecasttemp} &#8451;</h5>`;
 
-        forecastItemsContainer.appendChild(forecastItem);
-    }
+     const forecastItem = document.createElement('div');
+     forecastItem.classList.add('forcast-item');
+
+     forecastItem.innerHTML = `<h5 class="forcast-item-date">${formatdate}</h5>
+                               <img src="https:${forecastimage}" class="forcast-item-image">
+                               <h5 class="forcast-item-temp">${forecasttemp} &#8451;</h5>`;
+
+     forecastItemsContainer.appendChild(forecastItem);
+ }
+
 
 
     const date = weatherData.forecast.forecastday[0].date;
@@ -174,6 +180,7 @@ form.addEventListener('submit', e => {
             console.log(data);
         })
         .catch(err => console.log(err));
+
 });
 
 window.onload = () => {
@@ -183,4 +190,6 @@ window.onload = () => {
             console.log("Weather data loaded for Colombo:", data);
         })
         .catch(err => console.log(err));
-};
+}
+
+

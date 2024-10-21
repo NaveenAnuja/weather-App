@@ -72,30 +72,30 @@ const updateUi = (data) => {
     const title = `<p id="name">7-Day forecast ${cityName}</p>`;
     forecastName.innerHTML = title;
 
-     forecastItemsContainer.innerHTML = '';
+//     forecastItemsContainer.innerHTML = '';
 
    
 
- for (let i = 0; i < 3; i++) { 
-     const forecastdate = weatherData.forecast.forecastday[i].date;
-     const formatdate = formatDate1(forecastdate);
-     const forecastimage = weatherData.forecast.forecastday[i].day.condition.icon;
-     const forecasttemp = weatherData.forecast.forecastday[i].day.mintemp_c;
+//  for (let i = 0; i < 3; i++) { 
+//      const forecastdate = weatherData.forecast.forecastday[i].date;
+//      const formatdate = formatDate1(forecastdate);
+//      const forecastimage = weatherData.forecast.forecastday[i].day.condition.icon;
+//      const forecasttemp = weatherData.forecast.forecastday[i].day.mintemp_c;
 
 
-        forecastItem.innerHTML = `<h5 class="forcast-item-date">${formatdate}</h5>
-                               <img src="https:${forecastimage}" class="forcast-item-image">
-                               <h5 class="forcast-item-temp">${forecasttemp} &#8451;</h5>`;
+//         forecastItem.innerHTML = `<h5 class="forcast-item-date">${formatdate}</h5>
+//                                <img src="https:${forecastimage}" class="forcast-item-image">
+//                                <h5 class="forcast-item-temp">${forecasttemp} &#8451;</h5>`;
 
-     const forecastItem = document.createElement('div');
-     forecastItem.classList.add('forcast-item');
+//      const forecastItem = document.createElement('div');
+//      forecastItem.classList.add('forcast-item');
 
-     forecastItem.innerHTML = `<h5 class="forcast-item-date">${formatdate}</h5>
-                               <img src="https:${forecastimage}" class="forcast-item-image">
-                               <h5 class="forcast-item-temp">${forecasttemp} &#8451;</h5>`;
+//      forecastItem.innerHTML = `<h5 class="forcast-item-date">${formatdate}</h5>
+//                                <img src="https:${forecastimage}" class="forcast-item-image">
+//                                <h5 class="forcast-item-temp">${forecasttemp} &#8451;</h5>`;
 
-     forecastItemsContainer.appendChild(forecastItem);
- }
+//      forecastItemsContainer.appendChild(forecastItem);
+//  }
 
 
 

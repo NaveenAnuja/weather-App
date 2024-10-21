@@ -18,7 +18,7 @@ const getWeatherNext7days = async (city) => {
     return data;
 };
 
-const getCurentDateTime = async (city) => {
+const getCurrentDateTime = async (city) => {
     const base = `https://api.weatherapi.com/v1/timezone.json`;
     const query = `?key=${key}&q=${city}`;
 

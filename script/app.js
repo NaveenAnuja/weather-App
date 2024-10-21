@@ -3,6 +3,7 @@ const timeImage = document.getElementById('timeImage');
 const timeIcon = document.getElementById('timeIcon');
 const weather_info = document.querySelector('.weather-info');
 const appBody = document.querySelector('.app-body');
+const appHeader = document.querySelector('.app-header');
 const forecastItemsContainer = document.querySelector('.forcast-items-container');
 const forecast24hoursContainer1 = document.querySelector('.forecast-24-hours-container1');
 const forecast24hoursContainer2 = document.querySelector('.forecast-24-hours-container2');
@@ -30,9 +31,9 @@ const formatDate2 = (dateStr) => {
 const getInfo = async (city) => {
     const cityData = await getCityDetails(city);
     const weatherData = await getWeatherNext7days(city);
-    const currentDateTime = await getCurentDateTime(city);
+    const currentDateTime = await getCurrentDateTime(city);
 
-    return { cityData, weatherData, currentDateTime }
+    return { cityData, weatherData, currentDateTime };
 };
 
 const updateUi = (data) => {
@@ -51,6 +52,7 @@ const updateUi = (data) => {
         timeImage.setAttribute('src', 'images/dayTime.png');
         backgroundsource.setAttribute('src', 'videos/dayTime.mp4');
         background.load();
+        background.play();
     }
 
     const iconUrl = cityData.current.condition.icon;
@@ -70,9 +72,11 @@ const updateUi = (data) => {
     const title = `<p id="name">7-Day forecast ${cityName}</p>`;
     forecastName.innerHTML = title;
 
-    forecastItemsContainer.innerHTML = '';
+     forecastItemsContainer.innerHTML = '';
 
-    for (let i = 0; i < 7; i++) {
+
+
+    for (let i = 0; i < 3; i++) {
         const forecastdate = weatherData.forecast.forecastday[i].date;
         const formatdate = formatDate1(forecastdate);
         const forecastimage = weatherData.forecast.forecastday[i].day.condition.icon;
@@ -82,11 +86,12 @@ const updateUi = (data) => {
         forecastItem.classList.add('forcast-item');
 
         forecastItem.innerHTML = `<h5 class="forcast-item-date">${formatdate}</h5>
-                                  <img src="https:${forecastimage}" class="forcast-item-image">
-                                  <h5 class="forcast-item-temp">${forecasttemp} &#8451;</h5>`;
+                               <img src="https:${forecastimage}" class="forcast-item-image">
+                               <h5 class="forcast-item-temp">${forecasttemp} &#8451;</h5>`;
 
         forecastItemsContainer.appendChild(forecastItem);
     }
+
 
     const date = weatherData.forecast.forecastday[0].date;
     const updateDate = formatDate2(date);
@@ -138,6 +143,7 @@ const updateUi = (data) => {
     }
 
     appBody.style.display = "block";
+    appHeader.style.display = "block";
     background.style.display = "block";
     forecastItemsContainer.style.display = "grid";
     forecast24hoursContainer1.style.display = "flex";
@@ -170,4 +176,11 @@ form.addEventListener('submit', e => {
         .catch(err => console.log(err));
 });
 
-
+window.onload = () => {
+    getInfo("Colombo")
+        .then(data => {
+            updateUi(data);
+            console.log("Weather data loaded for Colombo:", data);
+        })
+        .catch(err => console.log(err));
+};

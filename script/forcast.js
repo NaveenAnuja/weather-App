@@ -1,29 +1,20 @@
 const key = `d7eb0cf1076149e3b1f181324240609`;
 
-const getCityDetails = async (city) => {
-    const base = `https://api.weatherapi.com/v1/current.json`;
-    const query = `?key=${key}&q=${city}`;
-
-    const response = await fetch(base + query);
-    const data = await response.json();
-    return data;
-};
-
-const getWeatherNext7days = async (city) => {
+const getWeather = async (city) => {
     const base = `https://api.weatherapi.com/v1/forecast.json`;
-    const query = `?key=${key}&q=${city}&days=7`;
+    const query = `?key=${key}&q=${encodeURIComponent(city)}&days=7&aqi=no&alerts=no`;
 
     const response = await fetch(base + query);
+
+    if (!response.ok) {
+        throw new Error("Could not reach the weather service. Try again in a moment.");
+    }
+
     const data = await response.json();
+
+    if (data.error) {
+        throw new Error(data.error.message || "Location not found.");
+    }
+
     return data;
 };
-
-const getCurrentDateTime = async (city) => {
-    const base = `https://api.weatherapi.com/v1/timezone.json`;
-    const query = `?key=${key}&q=${city}`;
-
-    const response = await fetch(base + query);
-    const data = await response.json();
-    return data;
-};
-

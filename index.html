@@ -1,278 +1,120 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="description" content="Local weather, hourly outlook, and a multi-day forecast.">
     <title>Weather</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='style/style.css'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style/style.css">
 </head>
 
-<body>
-    <div class="app-header">
-        <h1>Weather Update</h1>
-        <span>Enter a location for weather information</span>
+<body class="is-loading" data-theme="day">
+    <div class="sky-overlay" aria-hidden="true"></div>
 
-        <form>
-            <input type="text" name="userLocation" id="userLocation" autocomplete="off">
-        </form>
-    </div>
-
-    <video id="background" style="display: none;" autoplay muted loop>
-        <source id="backgroundsource" src="/videos/dayTime.mp4" type="video/mp4">
+    <video id="background" class="bg-video" autoplay muted loop playsinline>
+        <source id="backgroundsource" src="videos/dayTime.mp4" type="video/mp4">
     </video>
 
-    <div class="app-body">
-        <div class="time-image">
-            <img src="https://via.placeholder.com/300x260" alt="day or nigth" id="timeImage">
+    <div class="app">
+        <header class="topbar">
+            <a class="brand" href="./">Weather</a>
+
+            <form class="search" id="searchForm" role="search" autocomplete="off">
+                <label class="sr-only" for="userLocation">Search city</label>
+                <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" />
+                    <path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                </svg>
+                <input type="text" name="userLocation" id="userLocation" placeholder="Search a city…"
+                    autocomplete="off" spellcheck="false">
+                <button type="submit" class="search-btn">Search</button>
+            </form>
+        </header>
+
+        <div class="status-line" id="statusLine" role="status" aria-live="polite">
+            <span class="loader" aria-hidden="true"></span>
+            <span class="status-text">Fetching the sky…</span>
         </div>
 
-        <div class="weather-icon">
-            <img src="https://via.placeholder.com/100" alt="day or nigth" id="timeIcon">
-        </div>
+        <main class="content" id="weatherContent" hidden>
+            <section class="hero" aria-labelledby="city">
+                <div class="hero-top">
+                    <p class="hero-meta">
+                        <span id="date">—</span>
+                        <span class="dot" aria-hidden="true"></span>
+                        <span id="time">—</span>
+                    </p>
+                    <p id="region" class="hero-region">—</p>
+                </div>
 
-        <div class="weather-info">
-            <p id="city">Bentota</p>
-            <p id="status">Cloudy</p>
+                <div class="hero-main">
+                    <div class="hero-copy">
+                        <h1 id="city">—</h1>
+                        <p id="status" class="condition">—</p>
+                    </div>
 
-            <p id="temp">25.2 &#8451;</p>
-            <p id="wind">19.4 &#127786;</p>
-            <p id="humidity">86 &#128167;</span></p>
-        </div>
+                    <div class="hero-temp" aria-live="polite">
+                        <img id="timeIcon" class="condition-icon" src="" alt="" width="64" height="64">
+                        <div class="temp-block">
+                            <span id="temp" class="temp-value">—</span>
+                            <span class="temp-unit">°</span>
+                        </div>
+                        <p id="hiLo" class="hi-lo">H — · L —</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="metrics" aria-label="Current conditions">
+                <div class="metric">
+                    <span class="metric-label">Feels like</span>
+                    <span id="feelsLike" class="metric-value">—</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Wind</span>
+                    <span id="wind" class="metric-value">—</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Humidity</span>
+                    <span id="humidity" class="metric-value">—</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">UV index</span>
+                    <span id="uv" class="metric-value">—</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Visibility</span>
+                    <span id="visibility" class="metric-value">—</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Pressure</span>
+                    <span id="pressure" class="metric-value">—</span>
+                </div>
+            </section>
+
+            <section class="panel" aria-labelledby="hourlyTitle">
+                <div class="panel-head">
+                    <h2 id="hourlyTitle">Next 24 hours</h2>
+                    <p class="panel-hint">Drag to browse</p>
+                </div>
+                <div class="hourly-track" id="hourlyTrack" tabindex="0"></div>
+            </section>
+
+            <section class="panel" aria-labelledby="dailyTitle">
+                <div class="panel-head">
+                    <h2 id="dailyTitle">Coming days</h2>
+                </div>
+                <div class="daily-list" id="dailyList"></div>
+            </section>
+        </main>
     </div>
 
-    <div class="current-date-time">
-        <p id="time">11.28</p>
-        <p id="date">08 january 2024</p>
-    </div>
-
-
-    <div class="forecast-title">
-        <p id="name">7-Day forecast</p>
-    </div>
-
-    <div class="forcast-items-container">
-
-        <div class="forcast-item">
-            <h5 class="forcast-item-date">Dec 03</h5>
-            <img src="images/forcast-image.png" class="forcast-item-image">
-            <h5 class="forcast-item-temp">24.7 &#8451;</h5>
-        </div>
-
-        <div class="forcast-item">
-            <h5 class="forcast-item-date">Dec 04</h5>
-            <img src="images/forcast-image.png" class="forcast-item-image">
-            <h5 class="forcast-item-temp">29.3 &#8451;</h5>
-        </div>
-
-        <div class="forcast-item">
-            <h5 class="forcast-item-date">Dec 05</h5>
-            <img src="images/forcast-image.png" class="forcast-item-image">
-            <h5 class="forcast-item-temp">27.6&#8451;</h5>
-        </div>
-
-        <div class="forcast-item">
-            <h5 class="forcast-item-date">Dec 06</h5>
-            <img src="images/forcast-image.png" class="forcast-item-image">
-            <h5 class="forcast-item-temp">28 &#8451;</h5>
-        </div>
-
-        <div class="forcast-item">
-            <h5 class="forcast-item-date">Dec 07</h5>
-            <img src="images/forcast-image.png" class="forcast-item-image">
-            <h5 class="forcast-item-temp">25.3 &#8451;</h5>
-        </div>
-
-        <div class="forcast-item">
-            <h5 class="forcast-item-date">Dec 08</h5>
-            <img src="images/forcast-image.png" class="forcast-item-image">
-            <h5 class="forcast-item-temp">22 &#8451;</h5>
-        </div>
-
-        <div class="forcast-item">
-            <h5 class="forcast-item-date">Dec 09</h5>
-            <img src="images/forcast-image.png" class="forcast-item-image">
-            <h5 class="forcast-item-temp">28.2 &#8451;</h5>
-        </div>
-    </div>
-
-    <div class="forecast-24-hours-container1">
-
-        <div class="forecast-24-items">
-            <h5 class="forecast-item-time">22.15</h5>
-            <img src="/images/forcast-image.png" class="forecast-24-image">
-            <h5 class="forecast-status">sunny</h5>
-            <h5 class="forecast-24-temp">26.3 &#8451;</h5>
-        </div>
-
-        <div class="forecast-24-items">
-            <h5 class="forecast-item-time">22.15</h5>
-            <img src="/images/forcast-image.png" class="forecast-24-image">
-            <h5 class="forecast-status">sunny</h5>
-            <h5 class="forecast-24-temp">26.3 &#8451;</h5>
-        </div>
-
-        <div class="forecast-24-items">
-            <h5 class="forecast-item-time">22.15</h5>
-            <img src="/images/forcast-image.png" class="forecast-24-image">
-            <h5 class="forecast-status">sunny</h5>
-            <h5 class="forecast-24-temp">26.3 &#8451;</h5>
-        </div>
-
-        <div class="forecast-24-items">
-            <h5 class="forecast-item-time">22.15</h5>
-            <img src="/images/forcast-image.png" class="forecast-24-image">
-            <h5 class="forecast-status">sunny</h5>
-            <h5 class="forecast-24-temp">26.3 &#8451;</h5>
-        </div>
-
-        <div class="forecast-24-items">
-            <h5 class="forecast-item-time">22.15</h5>
-            <img src="/images/forcast-image.png" class="forecast-24-image">
-            <h5 class="forecast-status">sunny</h5>
-            <h5 class="forecast-24-temp">26.3 &#8451;</h5>
-        </div>
-
-        <div class="forecast-24-items">
-            <h5 class="forecast-item-time">22.15</h5>
-            <img src="/images/forcast-image.png" class="forecast-24-image">
-            <h5 class="forecast-status">sunny</h5>
-            <h5 class="forecast-24-temp">26.3 &#8451;</h5>
-        </div>
-
-        <div class="forecast-24-items">
-            <h5 class="forecast-item-time">22.15</h5>
-            <img src="/images/forcast-image.png" class="forecast-24-image">
-            <h5 class="forecast-status">sunny</h5>
-            <h5 class="forecast-24-temp">26.3 &#8451;</h5>
-        </div>
-
-        <div class="forecast-24-items">
-            <h5 class="forecast-item-time">22.15</h5>
-            <img src="/images/forcast-image.png" class="forecast-24-image">
-            <h5 class="forecast-status">sunny</h5>
-            <h5 class="forecast-24-temp">26.3 &#8451;</h5>
-        </div>
-
-        <div class="forecast-24-items">
-            <h5 class="forecast-item-time">22.15</h5>
-            <img src="/images/forcast-image.png" class="forecast-24-image">
-            <h5 class="forecast-status">sunny</h5>
-            <h5 class="forecast-24-temp">26.3 &#8451;</h5>
-        </div>
-
-        <div class="forecast-24-items">
-            <h5 class="forecast-item-time">22.15</h5>
-            <img src="/images/forcast-image.png" class="forecast-24-image">
-            <h5 class="forecast-status">sunny</h5>
-            <h5 class="forecast-24-temp">26.3 &#8451;</h5>
-        </div>
-
-        <div class="forecast-24-items">
-            <h5 class="forecast-item-time">22.15</h5>
-            <img src="/images/forcast-image.png" class="forecast-24-image">
-            <h5 class="forecast-status">sunny</h5>
-            <h5 class="forecast-24-temp">26.3 &#8451;</h5>
-        </div>
-
-        <div class="forecast-24-items">
-            <h5 class="forecast-item-time">22.15</h5>
-            <img src="/images/forcast-image.png" class="forecast-24-image">
-            <h5 class="forecast-status">sunny</h5>
-            <h5 class="forecast-24-temp">26.3 &#8451;</h5>
-        </div>
-    </div>
-
-    <div class="forecast-24-hours-container2">
-        <div class="forecast-24-items">
-            <h5 class="forecast-item-time">22.15</h5>
-            <img src="/images/forcast-image.png" class="forecast-24-image">
-            <h5 class="forecast-status">sunny</h5>
-            <h5 class="forecast-24-temp">26.3 &#8451;</h5>
-        </div>
-
-        <div class="forecast-24-items">
-            <h5 class="forecast-item-time">22.15</h5>
-            <img src="/images/forcast-image.png" class="forecast-24-image">
-            <h5 class="forecast-status">sunny</h5>
-            <h5 class="forecast-24-temp">26.3 &#8451;</h5>
-        </div>
-
-        <div class="forecast-24-items">
-            <h5 class="forecast-item-time">22.15</h5>
-            <img src="/images/forcast-image.png" class="forecast-24-image">
-            <h5 class="forecast-status">sunny</h5>
-            <h5 class="forecast-24-temp">26.3 &#8451;</h5>
-        </div>
-
-        <div class="forecast-24-items">
-            <h5 class="forecast-item-time">22.15</h5>
-            <img src="/images/forcast-image.png" class="forecast-24-image">
-            <h5 class="forecast-status">sunny</h5>
-            <h5 class="forecast-24-temp">26.3 &#8451;</h5>
-        </div>
-
-        <div class="forecast-24-items">
-            <h5 class="forecast-item-time">22.15</h5>
-            <img src="/images/forcast-image.png" class="forecast-24-image">
-            <h5 class="forecast-status">sunny</h5>
-            <h5 class="forecast-24-temp">26.3 &#8451;</h5>
-        </div>
-
-        <div class="forecast-24-items">
-            <h5 class="forecast-item-time">22.15</h5>
-            <img src="/images/forcast-image.png" class="forecast-24-image">
-            <h5 class="forecast-status">sunny</h5>
-            <h5 class="forecast-24-temp">26.3 &#8451;</h5>
-        </div>
-
-        <div class="forecast-24-items">
-            <h5 class="forecast-item-time">22.15</h5>
-            <img src="/images/forcast-image.png" class="forecast-24-image">
-            <h5 class="forecast-status">sunny</h5>
-            <h5 class="forecast-24-temp">26.3 &#8451;</h5>
-        </div>
-
-        <div class="forecast-24-items">
-            <h5 class="forecast-item-time">22.15</h5>
-            <img src="/images/forcast-image.png" class="forecast-24-image">
-            <h5 class="forecast-status">sunny</h5>
-            <h5 class="forecast-24-temp">26.3 &#8451;</h5>
-        </div>
-
-        <div class="forecast-24-items">
-            <h5 class="forecast-item-time">22.15</h5>
-            <img src="/images/forcast-image.png" class="forecast-24-image">
-            <h5 class="forecast-status">sunny</h5>
-            <h5 class="forecast-24-temp">26.3 &#8451;</h5>
-        </div>
-
-        <div class="forecast-24-items">
-            <h5 class="forecast-item-time">22.15</h5>
-            <img src="/images/forcast-image.png" class="forecast-24-image">
-            <h5 class="forecast-status">sunny</h5>
-            <h5 class="forecast-24-temp">26.3 &#8451;</h5>
-        </div>
-
-        <div class="forecast-24-items">
-            <h5 class="forecast-item-time">22.15</h5>
-            <img src="/images/forcast-image.png" class="forecast-24-image">
-            <h5 class="forecast-status">sunny</h5>
-            <h5 class="forecast-24-temp">26.3 &#8451;</h5>
-        </div>
-
-        <div class="forecast-24-items">
-            <h5 class="forecast-item-time">22.15</h5>
-            <img src="/images/forcast-image.png" class="forecast-24-image">
-            <h5 class="forecast-status">sunny</h5>
-            <h5 class="forecast-24-temp">26.3 &#8451;</h5>
-        </div>
-    </div>
-
-
-    <script src="/script/forcast.js"></script>
-    <script src="/script/app.js"></script>
+    <script src="script/forcast.js"></script>
+    <script src="script/app.js"></script>
 </body>
 
 </html>
